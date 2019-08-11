@@ -20,16 +20,6 @@ spec:
     volumeMounts:
       - mountPath: /
         name: m2
-  - name: kubectl
-    image: gcr.io/cloud-builders/kubectl
-    command:
-    - cat
-    tty: true
-  - name: gcloud
-    image: gcr.io/cloud-builders/gcloud
-    command:
-    - cat
-    tty: true
 """
 }
    }
