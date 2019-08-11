@@ -1,7 +1,10 @@
+def project = 'silent-oasis-249511'
+def  appName = 'test'
+
 pipeline {
   agent {
     kubernetes {
-      label 'spring-petclinic'
+      label 'sample-app'
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
@@ -10,15 +13,24 @@ metadata:
 labels:
   component: ci
 spec:
+  # Use service account that can deploy to all namespaces
+  serviceAccountName: cd-jenkins
   containers:
-  - name: maven
-    image: maven:latest
+  - name: golang
+    image: golang:1.10
     command:
     - cat
     tty: true
-    volumeMounts:
-      - mountPath: /
-        name: m2
+  - name: gcloud
+    image: gcr.io/cloud-builders/gcloud
+    command:
+    - cat
+    tty: true
+  - name: kubectl
+    image: gcr.io/cloud-builders/kubectl
+    command:
+    - cat
+    tty: true
 """
 }
    }
