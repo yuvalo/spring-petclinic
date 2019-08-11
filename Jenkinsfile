@@ -21,9 +21,9 @@ spec:
     command:
     - cat
     tty: true
-     volumeMounts:
-       - mountPath: "/root/.m2"
-         name: m2 
+    volumeMounts:
+      - mountPath: "/root/.m2"
+        name: m2 
   - name: gcloud
     image: gcr.io/cloud-builders/gcloud
     command:
