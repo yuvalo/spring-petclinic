@@ -4,7 +4,7 @@ def  appName = 'test'
 pipeline {
   agent {
     kubernetes {
-      label 'sample-app'
+      label 'spring-petclinic-demo'
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
@@ -16,8 +16,8 @@ spec:
   # Use service account that can deploy to all namespaces
   serviceAccountName: cd-jenkins
   containers:
-  - name: golang
-    image: golang:1.10
+  - name: maven
+    image: maven:latest
     command:
     - cat
     tty: true
