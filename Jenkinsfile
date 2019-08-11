@@ -34,6 +34,10 @@ spec:
     command:
     - cat
     tty: true
+  volumes:
+    - name: m2
+      persistentVolumeClaim:
+        claimName: m2
 """
 }
    }
