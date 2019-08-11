@@ -23,7 +23,8 @@ spec:
     - cat
     tty: true
 """
-}
+  }
+ }
   stages {
     stage('Build') {
       steps {
@@ -44,3 +45,7 @@ spec:
         }
       }
     }
+  
+  }
+}
+  
