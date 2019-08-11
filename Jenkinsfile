@@ -19,11 +19,16 @@ spec:
     volumeMounts:
       - mountPath: /
         name: m2
-  volumes:
-  - name: m2
-    hostPath:
-      path: /Users/yuval/.m2
-      type: Directory
+  - name: kubectl
+    image: gcr.io/cloud-builders/kubectl
+    command:
+    - cat
+    tty: true
+  - name: gcloud
+    image: gcr.io/cloud-builders/gcloud
+    command:
+    - cat
+    tty: true
 """
 }
    }
