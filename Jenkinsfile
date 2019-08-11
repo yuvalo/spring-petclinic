@@ -1,4 +1,3 @@
-
 pipeline {
   agent {
     kubernetes {
@@ -23,8 +22,8 @@ spec:
     - cat
     tty: true
 """
-  }
- }
+}
+   }
   stages {
     stage('Build') {
       steps {
@@ -35,7 +34,6 @@ spec:
         }
       }
     }
-  stages {
     stage('Test') {
       steps {
         container('maven') {
@@ -47,5 +45,4 @@ spec:
     }
   
   }
-}
 } 
