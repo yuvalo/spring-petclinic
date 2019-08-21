@@ -24,15 +24,8 @@ spec:
     volumeMounts:
       - mountPath: "/root/.m2"
         name: m2 
-  - name: gcloud
-    image: gcr.io/cloud-builders/gcloud
-    command:
-    - cat
-    tty: true
-  - name: kubectl
-    image: gcr.io/cloud-builders/kubectl
-    command:
-    - cat
+  - name: docker 
+    image: docker:dind 
     tty: true
   volumes:
     - name: m2
@@ -60,6 +53,14 @@ spec:
         }
       }
     }
+    stage('Push') {
+      steps {
+        container('docker') {
+          sh """
+             docker build -t spring-petclinic-demo:$BUILD_NUMBER .
+          """
+        }
+      }
   
   }
 } 
