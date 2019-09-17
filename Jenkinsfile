@@ -2,6 +2,14 @@ def project = 'silent-oasis-249511'
 def  appName = 'test'
 
 pipeline {
+  agent {
+    maven {
+      image 'maven:latest'
+    }
+    docker {
+      image 'docker:latest'
+    }
+  }
   stages {
     stage('Build') {
       steps {
