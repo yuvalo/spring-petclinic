@@ -2,40 +2,35 @@ def project = 'silent-oasis-249511'
 def  appName = 'test'
 
 pipeline {
-  agent {
-    maven {
-      image 'maven:latest'
-    }
-    docker {
-      image 'docker:latest'
-    }
-  }
   stages {
     stage('Build') {
+     agent {
+             docker { image 'maven:latest' }
+     }
       steps {
-        container('maven') {
           sh """
           		mvn package -DskipTests
 						"""
-        }
       }
     }
     stage('Test') {
+      agent {
+        docker {image 'maven:latest'} 
+      }
       steps {
-        container('maven') {
           sh """
              mvn test
           """
-        }
       }
     }
     stage('Push') {
+			agent {
+				docker {image 'docker:latest'}
+			} 
       steps {
-        container('docker') {
           sh """
              docker build -t spring-petclinic-demo:$BUILD_NUMBER .
           """
-        }
       }
     }
   }
