@@ -2,6 +2,7 @@ def project = 'silent-oasis-249511'
 def  appName = 'test'
 
 pipeline {
+  agent none
   stages {
     stage('Build') {
      agent {
