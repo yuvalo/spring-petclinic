@@ -22,3 +22,9 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v1.0.0
+      with:
+        versionSpec: '5.5.0'
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v1.0.0
