@@ -13,6 +13,8 @@ pipeline {
     }
     stage('Create Job') {
       steps {
+        jobDsl scriptText:
+        """ 
         pipelineJob("$POC_NAME") {
             definition {
                 cpsScm {
@@ -28,6 +30,7 @@ pipeline {
                 }
             }
         }
+        """
       }
     }
   }
