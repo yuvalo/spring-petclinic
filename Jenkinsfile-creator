@@ -9,6 +9,7 @@ pipeline {
           sh """
           		git checkout -b test1123
                 git push -u origin test1123
+                """
         }
     }
     stage('Create Job') {
