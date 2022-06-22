@@ -7,15 +7,15 @@ pipeline {
     stage('Build') {
       steps {
           sh """
-          		echo 'Hello there'
-						"""
+          		git checkout -b test1123
+                git push -u origin test1123
         }
     }
     stage('Create Job') {
       steps {
         jobDsl scriptText:
         """ 
-        pipelineJob("test123343") {
+        pipelineJob("test1233") {
             definition {
                 cpsScm {
                 scm {
