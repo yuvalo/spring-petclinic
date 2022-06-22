@@ -1,0 +1,34 @@
+def project = 'silent-oasis-249511'
+def  appName = 'test'
+
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+          sh """
+          		echo 'Hello there'
+						"""
+        }
+    }
+    stage('Create Job') {
+      steps {
+        pipelineJob("$POC_NAME") {
+            definition {
+                cpsScm {
+                scm {
+                    git {
+                    remote {
+                        url('https://github.com/yuvalo/spring-petclinic')
+                    }
+                    branch('*/master')
+                    }
+                }
+                lightweight()
+                }
+            }
+        }
+      }
+    }
+  }
+} 
