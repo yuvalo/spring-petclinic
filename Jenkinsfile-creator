@@ -15,7 +15,7 @@ pipeline {
       steps {
         jobDsl scriptText:
         """ 
-        pipelineJob("$POC_NAME") {
+        pipelineJob("test123343") {
             definition {
                 cpsScm {
                 scm {
