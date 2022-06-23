@@ -1,6 +1,8 @@
 def project = 'silent-oasis-249511'
-def  THE_NAME = 'test44'
-
+parameters { 
+    string(name: 'POC_NAME', defaultValue: '', description: 'The name of the POC')
+    choice(name: 'POC_TYPE', choices: ['banking-alpha', 'insurance-aplha'], description: '')
+     }    
 pipeline {
   agent any
   stages {
@@ -9,8 +11,8 @@ pipeline {
         withCredentials([sshUserPrivateKey(credentialsId: "github-deploy-key", keyFileVariable: 'keyfile')])  {
           sh """
                 export GIT_SSH_COMMAND="ssh -i $keyfile -o IdentitiesOnly=yes"
-          		git checkout -b test1123
-                git push -u origin test1123
+          		git checkout -b poc/${POC_NAME}
+                git push -u origin poc/{$POC_NAME}
                 """
         }
       }
@@ -19,7 +21,7 @@ pipeline {
       steps {
         jobDsl scriptText:
         """ 
-        pipelineJob("${THE_NAME}") {
+        pipelineJob("poc-${POC_NAME}") {
             definition {
                 cpsScm {
                 scm {
@@ -31,6 +33,7 @@ pipeline {
                     }
                 }
                 lightweight()
+                scriptPath('Jenkinsfile-${POC_TYPE}')
                 }
             }
         }
