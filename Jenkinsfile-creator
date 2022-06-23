@@ -1,5 +1,5 @@
 def project = 'silent-oasis-249511'
-def  appName = 'test'
+def  THENAME = 'test44'
 
 pipeline {
   agent any
@@ -19,7 +19,7 @@ pipeline {
       steps {
         jobDsl scriptText:
         """ 
-        pipelineJob("test1233") {
+        pipelineJob("$THE_NAME") {
             definition {
                 cpsScm {
                 scm {
