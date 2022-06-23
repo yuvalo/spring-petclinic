@@ -1,10 +1,11 @@
 def project = 'silent-oasis-249511'
-parameters { 
+
+pipeline {
+  agent any
+  parameters { 
     string(name: 'POC_NAME', defaultValue: '', description: 'The name of the POC')
     choice(name: 'POC_TYPE', choices: ['banking-alpha', 'insurance-aplha'], description: '')
      }    
-pipeline {
-  agent any
   stages {
     stage('Build') {
       steps {
