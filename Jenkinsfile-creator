@@ -13,7 +13,7 @@ pipeline {
           sh """
                 export GIT_SSH_COMMAND="ssh -i $keyfile -o IdentitiesOnly=yes"
           		git checkout -b poc/${POC_NAME}
-                git push -u origin poc/{$POC_NAME}
+                git push -u origin poc/${POC_NAME}
                 """
         }
       }
